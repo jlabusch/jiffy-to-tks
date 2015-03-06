@@ -1,0 +1,28 @@
+{
+  "name": "jiffy-to-tks",
+  "version": "1.0.0",
+  "description": "Downloads Jiffy timesheet CSV files from Google Drive and turns them into Catalyst TKS files.",
+  "main": "jiffy-to-tks.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jlabusch/jiffy-to-tks.git"
+  },
+  "keywords": [
+    "jiffy",
+    "timesheeting",
+    "tks"
+  ],
+  "author": "Jacques Labuschagne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jlabusch/jiffy-to-tks/issues"
+  },
+  "homepage": "https://github.com/jlabusch/jiffy-to-tks",
+  "dependencies": {
+    "googleapis": "^1.1.5",
+    "request": "^2.53.0"
+  }
+}

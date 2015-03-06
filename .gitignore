@@ -1,0 +1,4 @@
+node_modules
+.*.swp
+timesheet.txt
+secure.json
