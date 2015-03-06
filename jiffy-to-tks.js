@@ -2,15 +2,6 @@ var google  = require('googleapis'),
     request = require('request'),
     secure  = require('./secure.json');
 
-// secure.json's format is:
-//
-// {
-//   "CLIENT_ID":      "(OAuth2 parameter from google dev console)",
-//   "CLIENT_SECRET":  "(OAuth2 parameter from google dev console)",
-//   "REFRESH_TOKEN":  "(OAuth2 parameter you can get from the API explorer, given the above)",
-//   "FOLDER_ID":      "(Browse to the drive folder that contains the Jiffy CSV files and copy <id> from https://drive.google.com/drive/#folders/<id>)"
-// }
-
 var tks = {};
 
 function Folder(auth, callback){

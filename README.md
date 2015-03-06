@@ -14,7 +14,7 @@ Downloads Jiffy timesheet CSV files from Google Drive and turns them into Cataly
 {
   "CLIENT_ID":      "(OAuth2 parameter from google dev console)",
   "CLIENT_SECRET":  "(OAuth2 parameter from google dev console)",
-  "REFRESH_TOKEN":  "(OAuth2 parameter you can get from the API explorer, given the above)",
-  "FOLDER_ID":      "(Drive folder ID, i.e. <id> from https://drive.google.com/drive/#folders/<id>)"
+  "REFRESH_TOKEN":  "(OAuth2 parameter you can get from the API explorer)",
+  "FOLDER_ID":      "(Drive folder ID, e.g. https://drive.google.com/drive/#folders/<id>)"
 }
 ```
