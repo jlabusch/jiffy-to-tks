@@ -1,8 +1,8 @@
 SEC=secure.json
 
-.PHONY: all clean
+.PHONY: run clean
 
-all: secure.json
+run: secure.json
 	@node ./jiffy-to-tks.js | tee -a timesheet.txt && echo "Saved timesheet.txt"
 
 clean:
