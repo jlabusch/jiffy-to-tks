@@ -2,9 +2,9 @@
 
 Downloads Jiffy timesheet CSV files from Google Drive and turns them into Catalyst TKS files.
 
-This script will get slower and slower over time as your Google Drive trash fills up, because
-the `drive.children.list` API call includes trashed items, and we have to make a round trip
-for each child before we can tell whether it's trashed or not.
+This script moves processed files into the trash. Note that it will get slower and slower over
+time as your trash fills up, because the `drive.children.list` API call includes trashed items,
+and we have to make a round trip for each child before we can tell whether it's new or trashed.<br/>
 Just empty your trash if it gets too slow.
 
 ## Usage
