@@ -18,3 +18,9 @@ Downloads Jiffy timesheet CSV files from Google Drive and turns them into Cataly
   "FOLDER_ID":      "(Drive folder ID, e.g. https://drive.google.com/drive/#folders/<id>)"
 }
 ```
+
+The repository stores an encrypted version of your secure file (`secure.json.pgp`) and `make`
+will ensure that the clear text version (`secure.json`) is up to date before running the script.
+
+The clear text version is ignored by `git`, so to save your changes you should run `make secure` to
+regenerate the encrypted version before you commit.
