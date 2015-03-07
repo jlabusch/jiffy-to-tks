@@ -1,5 +1,11 @@
 # jiffy-to-tks
+
 Downloads Jiffy timesheet CSV files from Google Drive and turns them into Catalyst TKS files.
+
+This script will get slower and slower over time as your Google Drive trash fills up, because
+the `drive.children.list` API call includes trashed items, and we have to make a round trip
+for each child before we can tell whether it's trashed or not.
+Just empty your trash if it gets too slow.
 
 ## Usage
 
@@ -7,6 +13,7 @@ Downloads Jiffy timesheet CSV files from Google Drive and turns them into Cataly
 2. Export daily summaries from the Jiffy mobile app to Google Drive
 3. Do `make run`, which will append the Drive files to `timesheet.txt` in TKS format
 4. Tweak `timesheet.txt` as necessary and commit to TKS (e.g. `tks -c timesheet.txt`)
+
 
 ## Secure.json
 
