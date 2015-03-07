@@ -10,10 +10,21 @@ Just empty your trash if it gets too slow.
 ## Usage
 
 1. Set up secure.json
-2. Export daily summaries from the Jiffy mobile app to Google Drive
+2. Export daily summaries from the Jiffy mobile app to Google Drive as CSV
 3. Do `make run`, which will append the Drive files to `timesheet.txt` in TKS format
 4. Tweak `timesheet.txt` as necessary and commit to TKS (e.g. `tks -c timesheet.txt`)
 
+## Configuring Jiffy
+
+This script relies on your Jiffy projects and tasks to follow one of two naming conventions:
+
+* Default style: "Description of work - 123456"
+    * In this case the WR number is 123456, and the description of work is only used if your Jiffy "note" field is blank
+* Override style: "123456. Description of work"
+    * In this case the description of work overrides the Jiffy "note" field.
+
+The script will break if your descriptions contain commas, but if you care enough it would
+be possible to handle that properly.
 
 ## Secure.json
 
