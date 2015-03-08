@@ -21,7 +21,7 @@ This script relies on your Jiffy projects and tasks to follow one of two naming 
 * Default style: "Description of work - 123456"
     * In this case the WR number is 123456, and the description of work is only used if your Jiffy "note" field is blank
 * Override style: "123456. Description of work"
-    * In this case the description of work overrides the Jiffy "note" field.
+    * This style is usually used in a Note field to override the Project or Task level WR number. That WR number is stripped from the description.
 
 The script will break if your descriptions contain commas, but if you care enough it would
 be possible to handle that properly.
