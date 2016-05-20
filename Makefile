@@ -2,7 +2,13 @@ SEC=secure.json
 
 .PHONY: run clean
 
+
 run: secure.json
+	@docker images | grep -q "jiffy-to-tks" || docker build -t jlabusch/jiffy-to-tks .
+	@docker run -it --rm -v $$PWD:/opt jlabusch/jiffy-to-tks make __run
+
+__run:
+	@test -d node_modules || npm install
 	@node ./jiffy-to-tks.js | tee timesheet.txt && echo "Saved timesheet.txt"
 
 clean:
