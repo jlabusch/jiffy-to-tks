@@ -157,7 +157,7 @@ function convert_to_tks(data, callback){
             duration = (parts[5]/60).toFixed(2);
 
         // Default style
-        arr = line.match(/,"?([^,]+) - (\d\d\d\d\d+)/);
+        arr = line.match(/,"?([^,]+) - (\d+)/);
         if (arr){
             wr = arr[2];
             if (!note){
