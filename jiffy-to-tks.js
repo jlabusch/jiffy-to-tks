@@ -1,4 +1,5 @@
 var google  = require('googleapis'),
+    fs      = require('fs'),
     request = require('request'),
     secure  = require('./secure.json');
 
@@ -135,13 +136,14 @@ function convert_to_tks(data, callback){
 
     return {date: date, body: body};
 
-
     // Customer,Project,Task,Start time,Stop time,Minutes,Note
+    // "🐈 eu","66173 - General admin",,2017-06-29 00:53:11,2017-06-29 02:10:16,77,
     //
     // Look for fields of the following formats:
     //
     // Default style:
-    //      "$note - $wr"   Use $wr, and only use $note if the Note field is empty-ish.
+    //      "$note - $wr"
+    //      "$wr - $note"   Use $wr, and only use $note if the Note field is empty-ish.
     // Override style:
     //      "$wr. $note"    Use $wr and $note unconditionally; overrides the above.
     function matcher(line){
@@ -162,6 +164,14 @@ function convert_to_tks(data, callback){
             wr = arr[2];
             if (!note){
                 note = arr[1];
+            }
+        }
+        // Alternate default style
+        arr = line.match(/,"?(\d+) - ([^",]+)/);
+        if (arr){
+            wr = arr[1];
+            if (!note){
+                note = arr[2];
             }
         }
         // Override style
@@ -195,21 +205,50 @@ function write_tks(){
 function main(cfg){
     secure = cfg || secure;
 
-    var auth = new google.auth.OAuth2(secure.CLIENT_ID, secure.CLIENT_SECRET, null);
-    auth.setCredentials({
-        refresh_token: secure.REFRESH_TOKEN
-    });
-    auth.refreshAccessToken(function(err, tokens){
-        if (err){
-            throw err;
-        }
-        new Folder(auth, function(err, folder){
+    let local_files = false;
+
+    if (process.argv.length > 1){
+        process.argv.slice(2).forEach(f => {
+            fs.readFile(f, 'utf8', (err, data) => {
+                if (err){
+                    console.error(err);
+                    return;
+                }
+                console.error('Reading "' + f + '"');
+                convert_to_tks(data, function(err, res){
+                    if (err){
+                        console.error(err);
+                    }else{
+                        local_files = true;
+                        if (tks[res.date]){
+                            console.error('Warning - overwriting entries for "' + res.date + '"');
+                        }
+                        tks[res.date] = res.body;
+                    }
+                });
+            });
+        });
+        write_tks();
+        console.error('Done');
+    }
+    if (!local_files){
+        // Look online
+        var auth = new google.auth.OAuth2(secure.CLIENT_ID, secure.CLIENT_SECRET, null);
+        auth.setCredentials({
+            refresh_token: secure.REFRESH_TOKEN
+        });
+        auth.refreshAccessToken(function(err, tokens){
             if (err){
                 throw err;
             }
-            process_next_file(folder);
+            new Folder(auth, function(err, folder){
+                if (err){
+                    throw err;
+                }
+                process_next_file(folder);
+            });
         });
-    });
+    }
 }
 
 module.exports = main;

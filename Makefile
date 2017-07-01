@@ -9,7 +9,7 @@ run: secure.json
 
 __run:
 	@test -d node_modules || npm install
-	@node ./jiffy-to-tks.js | tee timesheet.txt && echo "Saved timesheet.txt"
+	@node ./jiffy-to-tks.js Jiffy*.csv | tee timesheet.txt && echo "Saved timesheet.txt"
 
 clean:
 	rm -f timesheet.txt secure.json

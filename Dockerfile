@@ -1,8 +1,6 @@
-FROM node:4.3.0
+FROM node:7.8
 
-RUN useradd -m -s /bin/bash user
-
-USER user
+USER node
 
 WORKDIR /opt
 
